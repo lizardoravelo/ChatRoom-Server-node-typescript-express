@@ -1,4 +1,3 @@
-// errors/errorHandler.ts
 import { Response } from 'express';
 import { AuthError } from './auth-error';
 import httpStatus from 'http-status';
@@ -9,7 +8,6 @@ interface ErrorResponse {
   details?: any;
 }
 
-// Define a type for HTTP status codes
 type HttpStatusCode = number;
 
 const handleErrorResponse = (res: Response, err: any): void => {
@@ -57,6 +55,3 @@ const handleErrorResponse = (res: Response, err: any): void => {
 };
 
 export default handleErrorResponse;
-
-// And update the AuthError class to use the correct type:
-// errors/AuthError.ts
