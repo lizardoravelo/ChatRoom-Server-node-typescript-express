@@ -8,6 +8,7 @@ import cors from 'cors';
 import config from './config/constants';
 import { router } from '@routes';
 import { initializeSocket } from '@socket/index';
+import { globalRateLimiter } from '@middleware/rateLimiter';
 import '@config/passport'; // Load configuration
 
 const app: Application = express();
@@ -27,6 +28,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
+app.use(globalRateLimiter);
 app.set('io', io);
 
 // Routes (Dynamically Generated)
