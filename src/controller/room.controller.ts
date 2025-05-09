@@ -22,8 +22,8 @@ interface IRoomController {
 const roomCtrl: IRoomController = {
   getRooms: async (req, res): Promise<void> => {
     try {
-      const page = parseInt(req.query.page || '1');
-      const status = req.query.status || 'active';
+      const page = parseInt(req.query.page ?? '1');
+      const status = req.query.status ?? 'active';
 
       const query: Record<string, any> = { status };
       if (req.query.isPrivate) {
@@ -73,7 +73,7 @@ const roomCtrl: IRoomController = {
         description: req.body.description,
         createdBy: user._id,
         maxUsers: req.body.maxUsers,
-        isPrivate: req.body.isPrivate || false,
+        isPrivate: req.body.isPrivate ?? false,
         status: 'active',
         activeUsers: [],
       });

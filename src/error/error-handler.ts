@@ -8,8 +8,6 @@ interface ErrorResponse {
   details?: any;
 }
 
-type HttpStatusCode = number;
-
 const handleErrorResponse = (res: Response, err: any): void => {
   console.error('Error:', err);
 
@@ -17,7 +15,7 @@ const handleErrorResponse = (res: Response, err: any): void => {
     message: 'Internal Server Error',
   };
 
-  let statusCode: HttpStatusCode = httpStatus.INTERNAL_SERVER_ERROR;
+  let statusCode: number = httpStatus.INTERNAL_SERVER_ERROR;
 
   // Handle known error types
   if (err instanceof AuthError) {

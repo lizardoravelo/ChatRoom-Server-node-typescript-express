@@ -8,14 +8,24 @@ import cors from 'cors';
 import config from './config/constants';
 import { router } from '@routes';
 import { initializeSocket } from '@socket/index';
+import { globalRateLimiter } from '@middleware/rateLimiter';
+import { corsOptions, allowedOrigins } from '@middleware/corsOptions';
 import '@config/passport'; // Load configuration
 
 const app: Application = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.warn(`Socket.IO CORS blocked: ${origin}`);
+        callback(new Error(`Socket.IO origin ${origin} not allowed`));
+      }
+    },
     methods: ['GET', 'POST'],
+    credentials: true,
   },
 });
 
@@ -23,10 +33,11 @@ const io = new Server(httpServer, {
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
+app.use(globalRateLimiter);
 app.set('io', io);
 
 // Routes (Dynamically Generated)

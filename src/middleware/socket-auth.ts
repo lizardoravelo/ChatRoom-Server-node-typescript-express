@@ -1,8 +1,7 @@
 import { Socket } from 'socket.io';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { IUser } from '@model/user';
+import User, { IUser } from '@model/user';
 import config from '@config/constants';
-import User from '@model/user';
 
 export interface AuthenticatedSocket extends Socket {
   user: IUser;
@@ -35,6 +34,7 @@ export const verifySocketToken = async (socket: Socket, next: (err?: Error) => v
 
     next();
   } catch (error) {
-    next(new Error('Invalid authentication token'));
+    console.error('Socket authentication error:', error);
+    return next(new Error('Invalid authentication token'));
   }
 };
