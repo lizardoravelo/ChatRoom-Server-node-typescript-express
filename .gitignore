@@ -129,4 +129,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 .DS_Store
