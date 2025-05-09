@@ -13,7 +13,7 @@ interface IMessageController {
 const messageCtrl: IMessageController = {
   getMessages: async (req, res): Promise<void> => {
     try {
-      const page = parseInt(req.query.page || '1');
+      const page = parseInt(req.query.page ?? '1');
       const messages = await Message.find({ roomId: req.params.roomId })
         .sort({ createdAt: -1 })
         .skip((page - 1) * config.messages_per_page)

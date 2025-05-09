@@ -85,7 +85,7 @@ export const initializeSocket = (io: Server) => {
       console.log(`Socket rooms:`, Array.from(socket.rooms));
 
       const formattedMessage = {
-        _id: _id || message._id,
+        _id: _id ?? message._id,
         roomId,
         content,
         userId: typeof userId === 'object' ? userId : { _id: userId, email: socket.data.user.email },

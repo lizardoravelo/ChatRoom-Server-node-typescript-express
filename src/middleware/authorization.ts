@@ -19,7 +19,7 @@ const handleJWT =
 
       // Handle missing or invalid user
       if (!user) {
-        throw new AuthError(httpStatus.UNAUTHORIZED, info?.message || 'Invalid credentials');
+        throw new AuthError(httpStatus.UNAUTHORIZED, info?.message ?? 'Invalid credentials');
       }
 
       // Check role authorization

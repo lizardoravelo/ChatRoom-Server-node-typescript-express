@@ -8,6 +8,7 @@ const roles = ['user', 'admin'] as const;
 type Role = (typeof roles)[number];
 
 interface Config {
+  corsOrigin: string;
   port: string;
   app: string;
   env: string;
@@ -28,7 +29,14 @@ interface Config {
   rooms_per_page: number;
 }
 
+function getNumberEnv(key: string, defaultValue: number): number {
+  const value = process.env[key];
+  const parsed = Number(value);
+  return !isNaN(parsed) && value !== undefined ? parsed : defaultValue;
+}
+
 const config: Config = {
+  corsOrigin: process.env.CORS_ORIGINS ?? '',
   port: process.env.PORT ?? '',
   app: process.env.APP ?? '',
   env: process.env.NODE_ENV ?? '',
@@ -45,8 +53,8 @@ const config: Config = {
     password: process.env.TRANSPORTER_PASSWORD ?? '',
   },
   roles,
-  messages_per_page: Number(process.env.MESSAGE_PER_PAGE) ?? 50,
-  rooms_per_page: Number(process.env.ROOMS_PER_PAGE) ?? 10,
+  messages_per_page: getNumberEnv('MESSAGE_PER_PAGE', 50),
+  rooms_per_page: getNumberEnv('ROOMS_PER_PAGE', 10),
 };
 
 export default config;
