@@ -7,7 +7,8 @@
     "dev": "nodemon -r tsconfig-paths/register src/index.ts",
     "start": "node -r tsconfig-paths/register -r ts-node/register src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier src --write --config .prettierrc --loglevel silent"
+    "format": "prettier src --write --config .prettierrc --loglevel silent",
+    "inject-swagger-env": "node -r tsconfig-paths/register -r ts-node/register ./src/scripts/inject-env-swagger.ts"
   },
   "author": "",
   "license": "ISC",

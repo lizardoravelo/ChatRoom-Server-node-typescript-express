@@ -41,7 +41,7 @@ const config: Config = {
   app: process.env.APP ?? '',
   env: process.env.NODE_ENV ?? '',
   secret: process.env.APP_SECRET ?? '',
-  hostname: process.env.HOSTNAME ?? '',
+  hostname: process.env.HOSTNAME ?? `http://localhost:${process.env.PORT}`,
   mongo: {
     uri: process.env.MONGODB_URL ?? '',
     testURI: process.env.MONGOTESTURI ?? '',

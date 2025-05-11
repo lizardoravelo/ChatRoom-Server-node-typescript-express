@@ -8,11 +8,11 @@
   "servers": [
     {
       "url": "http://localhost:5001/api",
-      "description": "REST API for chat application"
+      "description": "REST API"
     },
     {
       "url": "ws://localhost:5001",
-      "description": "WebSocket API for real-time communication"
+      "description": "WebSocket API"
     }
   ],
   "components": {
@@ -949,6 +949,42 @@
           }
         }
       }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health check endpoint",
+        "description": "Returns a basic status message to confirm the server is running.",
+        "tags": [
+          "System"
+        ],
+        "responses": {
+          "200": {
+            "description": "Server is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Server is healthy \ud83d\ude80"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2025-05-11T17:26:50.772052Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "tags": [
@@ -967,6 +1003,10 @@
     {
       "name": "WebSocket",
       "description": "WebSocket events for real-time communication. Note: These are WebSocket events, not REST endpoints. The paths shown here are for documentation purposes only."
+    },
+    {
+      "name": "System",
+      "description": "System-related endpoints like health checks"
     }
   ],
   "x-websocket-events": {
