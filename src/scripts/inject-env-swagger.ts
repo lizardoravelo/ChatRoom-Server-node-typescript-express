@@ -5,7 +5,7 @@ import config from '@config/constants';
 
 dotenv.config();
 
-const swaggerPath = path.resolve(__dirname, '../swagger.json');
+const swaggerPath = path.resolve(__dirname, '../../dist/swagger.json');
 const swagger = JSON.parse(fs.readFileSync(swaggerPath, 'utf8'));
 
 console.log('🔍 Environment variables at build time:');

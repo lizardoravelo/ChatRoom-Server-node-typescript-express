@@ -1,6 +1,6 @@
 import path from 'path';
 import swaggerJsDoc from 'swagger-jsdoc';
-import swaggerDocument from './swagger.json';
+import swaggerDocument from '../dist/swagger.json';
 
 const swaggerOptions = {
   definition: swaggerDocument,
