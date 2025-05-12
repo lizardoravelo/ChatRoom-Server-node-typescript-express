@@ -10,10 +10,11 @@ const sourcePath = path.resolve(__dirname, '../swagger.json');
 const swagger = JSON.parse(fs.readFileSync(sourcePath, 'utf8'));
 
 console.log('🔍 Environment variables at build time:');
-console.log('MONGODB_URL:', process.env.MONGODB_URL);
-console.log('PORT:', process.env.PORT);
-console.log('APP_SECRET:', process.env.APP_SECRET);
+console.log('MONGODB_URL:', config.mongo);
+console.log('PORT:', config.port);
+console.log('APP_SECRET:', config.secret);
 console.log('CORS_ORIGIN:', process.env.CORS_ORIGIN);
+console.log('HOSTNAME:', config.hostname);
 
 //Inject dynamic server URLs
 swagger.servers = [
