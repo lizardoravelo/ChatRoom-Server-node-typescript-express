@@ -7,6 +7,7 @@ const swaggerOptions = {
   apis: [path.join(__dirname, 'routes/*.ts')], // Path to the API docs
 };
 
+console.log('🚀 Swagger servers:', swaggerDocument.servers);
 const swaggerSpecs = swaggerJsDoc(swaggerOptions);
 
 export default swaggerSpecs;
