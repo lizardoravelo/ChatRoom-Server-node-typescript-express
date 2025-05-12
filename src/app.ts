@@ -37,6 +37,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
+app.set('trust proxy', 1);
 app.use(globalRateLimiter);
 app.set('io', io);
 
