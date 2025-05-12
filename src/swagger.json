@@ -7,11 +7,11 @@
   },
   "servers": [
     {
-      "url": "http://localhost:5001/api",
+      "url": "https://chatroom-rest-prod.up.railway.app/api",
       "description": "REST API"
     },
     {
-      "url": "ws://localhost:5001",
+      "url": "ws://chatroom-rest-prod.up.railway.app/",
       "description": "WebSocket API"
     }
   ],
@@ -146,9 +146,7 @@
     "/auth/signUp": {
       "post": {
         "summary": "Register a new user",
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "requestBody": {
           "required": true,
           "content": {
@@ -180,9 +178,7 @@
     "/auth/signIn": {
       "post": {
         "summary": "Login a user",
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "requestBody": {
           "required": true,
           "content": {
@@ -206,9 +202,7 @@
     "/room": {
       "get": {
         "summary": "Get all rooms",
-        "tags": [
-          "Room"
-        ],
+        "tags": ["Room"],
         "security": [
           {
             "bearerAuth": []
@@ -232,9 +226,7 @@
       },
       "post": {
         "summary": "Create a new room",
-        "tags": [
-          "Room"
-        ],
+        "tags": ["Room"],
         "security": [
           {
             "bearerAuth": []
@@ -292,9 +284,7 @@
     "/room/{roomId}/messages": {
       "get": {
         "summary": "Get messages for a room",
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "Retrieves messages linked to a room. Messages are stored independently but associated with a specific room.",
         "security": [
           {
@@ -332,9 +322,7 @@
       },
       "post": {
         "summary": "Send a message to a room",
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "Allows users to send messages in a specific room. Messages are stored independently but associated with the room.",
         "security": [
           {
@@ -377,9 +365,7 @@
     "/socket/connect": {
       "get": {
         "summary": "Connect to WebSocket server (WebSocket)",
-        "tags": [
-          "WebSocket"
-        ],
+        "tags": ["WebSocket"],
         "description": "**WEBSOCKET EVENT** - Clients connect to the WebSocket server and authenticate using a JWT token in the handshake auth object.",
         "security": [
           {
@@ -406,9 +392,7 @@
     "/socket/joinRoom": {
       "post": {
         "summary": "Join a chat room (WebSocket)",
-        "tags": [
-          "WebSocket"
-        ],
+        "tags": ["WebSocket"],
         "description": "**WEBSOCKET EVENT** - Allows a user to join a specific chat room. The user must be active and have a valid role.",
         "requestBody": {
           "required": true,
@@ -421,9 +405,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "roomId"
-                ]
+                "required": ["roomId"]
               }
             }
           }
@@ -485,9 +467,7 @@
     "/socket/leaveRoom": {
       "post": {
         "summary": "Leave a chat room (WebSocket)",
-        "tags": [
-          "WebSocket"
-        ],
+        "tags": ["WebSocket"],
         "description": "**WEBSOCKET EVENT** - Allows a user to leave a specific chat room.",
         "requestBody": {
           "required": true,
@@ -500,9 +480,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "roomId"
-                ]
+                "required": ["roomId"]
               }
             }
           }
@@ -532,9 +510,7 @@
     "/socket/sendMessage": {
       "post": {
         "summary": "Send a chat message (WebSocket)",
-        "tags": [
-          "WebSocket"
-        ],
+        "tags": ["WebSocket"],
         "description": "**WEBSOCKET EVENT** - Users send messages in a chat room. The message will be broadcast to all users in the room.",
         "requestBody": {
           "required": true,
@@ -560,11 +536,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "roomId",
-                  "content",
-                  "userId"
-                ]
+                "required": ["roomId", "content", "userId"]
               }
             }
           }
@@ -596,9 +568,7 @@
     "/socket/events/receive": {
       "get": {
         "summary": "WebSocket Events to Listen For",
-        "tags": [
-          "WebSocket"
-        ],
+        "tags": ["WebSocket"],
         "description": "**WEBSOCKET EVENTS** - These are events that clients should listen for from the server.\n\n- **newMessage**: Receive a new chat message\n- **user joined**: User joined notification\n- **user left**: User left notification\n- **active users**: List of active users in room\n- **error**: Error event notification",
         "responses": {
           "200": {
@@ -664,9 +634,7 @@
     "/auth/me": {
       "get": {
         "summary": "Get current user's profile",
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "security": [
           {
             "bearerAuth": []
@@ -690,9 +658,7 @@
       },
       "put": {
         "summary": "Update current user's profile",
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "security": [
           {
             "bearerAuth": []
@@ -742,9 +708,7 @@
     "/auth/users": {
       "get": {
         "summary": "Get all users (admin only)",
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "security": [
           {
             "bearerAuth": []
@@ -773,9 +737,7 @@
     "/auth/users/{id}": {
       "get": {
         "summary": "Get a user by ID (admin only)",
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "security": [
           {
             "bearerAuth": []
@@ -812,9 +774,7 @@
       },
       "put": {
         "summary": "Update a user by ID (admin only)",
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "security": [
           {
             "bearerAuth": []
@@ -878,9 +838,7 @@
       },
       "delete": {
         "summary": "Delete a user by ID (admin only)",
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "security": [
           {
             "bearerAuth": []
@@ -912,9 +870,7 @@
     "/auth/users/{id}/role": {
       "patch": {
         "summary": "Promote a user to admin (admin only)",
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "security": [
           {
             "bearerAuth": []
@@ -954,9 +910,7 @@
       "get": {
         "summary": "Health check endpoint",
         "description": "Returns a basic status message to confirm the server is running.",
-        "tags": [
-          "System"
-        ],
+        "tags": ["System"],
         "responses": {
           "200": {
             "description": "Server is healthy",
