@@ -8,6 +8,12 @@ dotenv.config();
 const swaggerPath = path.resolve(__dirname, '../swagger.json');
 const swagger = JSON.parse(fs.readFileSync(swaggerPath, 'utf8'));
 
+console.log('🔍 Environment variables at build time:');
+console.log('MONGODB_URL:', process.env.MONGODB_URL);
+console.log('PORT:', process.env.PORT);
+console.log('APP_SECRET:', process.env.APP_SECRET);
+console.log('CORS_ORIGIN:', process.env.CORS_ORIGIN);
+
 // Inject dynamic server URLs
 swagger.servers = [
   {
