@@ -47,6 +47,12 @@ app.use(router);
 // WebSockets (Socket.io)
 initializeSocket(io);
 
+console.log('🔍 Environment variables at build time:');
+console.log('MONGODB_URL:', process.env.MONGODB_URL);
+console.log('PORT:', process.env.PORT);
+console.log('APP_SECRET:', process.env.APP_SECRET);
+console.log('CORS_ORIGIN:', process.env.CORS_ORIGIN);
+
 // Start HTTP Server
 const server = httpServer.listen(config.port, () => {
   console.log(`Server running on port ${config.port}`);
